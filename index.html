@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pictionary Word Game</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* CREDIT */
+.credit {
+    position: fixed;
+    top: 6px;
+    right: 10px;
+    font-size: 12px;
+    color: #475569;
+    opacity: 0.8;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+/* NAVBAR */
+nav {
+    background: #2563eb;
+    padding: 15px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
+.hero {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #60a5fa, #34d399);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+/* GAME */
+.game-section {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.game-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+select, button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    margin: 10px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.word-box {
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    background: #e0f2fe;
+    color: #075985;
+    border-radius: 12px;
+    min-height: 60px;
+}
+
+/* ABOUT */
+.about {
+    padding: 40px 20px;
+    text-align: center;
+    background: #f1f5f9;
+}
+
+/* FOOTER */
+footer {
+    background: #0f172a;
+    color: #cbd5f5;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CREDIT -->
+<div class="credit">Made by – RAGHAV</div>
+
+<!-- NAV -->
+<nav>
+    <h2>🎨 Pictionary</h2>
+    <div>
+        <a href="#game">Play</a>
+        <a href="#about">About</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Pictionary Word Game</h1>
+    <p>Choose a word. Draw it. Let your friends guess!</p>
+</section>
+
+<!-- GAME -->
+<section class="game-section" id="game">
+    <div class="game-box">
+        <h2>Play Now</h2>
+
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <br>
+
+        <button onclick="generateWord()">Generate Word</button>
+
+        <div class="word-box" id="wordDisplay">
+            Choose difficulty and click generate
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2>About This Game</h2>
+    <p>
+        A simple Pictionary-style word game for friends, classrooms, and parties.
+        Pick a difficulty, get a word, and start drawing on paper!
+    </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Pictionary Game</p>
+</footer>
+
+<script>
+const easyWords = [
+"apple","dog","cat","sun","tree","house","car","fish","book","cup",
+"ball","hat","chair","bed","shoe","phone","star","cloud","flower","cake",
+"banana","bird","boat","bus","train","kite","balloon","pizza","robot","teddy",
+"heart","ghost","pumpkin","clock","key","pen","pencil","cookie","milk","egg",
+"cheese","bread","lamp","table","spoon","fork","plate","smile","rain"
+];
+
+const mediumWords = [
+"airplane","bicycle","castle","volcano","island","forest","river","mountain","desert","waterfall",
+"lighthouse","windmill","campfire","tent","pirate","astronaut","dragon","dinosaur","unicorn","treasure",
+"submarine","hot air balloon","roller coaster","stadium","microphone","headphones","keyboard","computer","tractor","tornado",
+"rainbow","glacier","traffic light","fire station","hospital","library","playground","factory","warehouse","garden"
+];
+
+const hardWords = [
+"time travel","black hole","parallel universe","artificial intelligence","virtual reality",
+"teleportation","invisibility cloak","space station","wormhole","underwater city",
+"ancient ruins","mythical creature","steampunk city","floating island","mirror world",
+"dream portal","hologram","nano technology","cloning lab","energy shield",
+"force field","laser maze","dark matter","supernova","nebula",
+"magic portal","enchanted artifact","spell book","rune stone","arcane tower"
+];
+
+function generateWord() {
+    const diff = document.getElementById("difficulty").value;
+    const words = diff === "easy" ? easyWords :
+                  diff === "medium" ? mediumWords : hardWords;
+
+    const randomWord = words[Math.floor(Math.random() * words.length)];
+    document.getElementById("wordDisplay").textContent = randomWord;
+}
+</script>
+
+</body>
+</html>
